@@ -1,26 +1,30 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
-#include <Windows.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<locale.h>
+#include<math.h>
 
-int main(void)
+const int N = 10;
+int random(int N) { return rand() % N; }
+
+int main()
 {
-	SetConsoleOutputCP(1251); //русификация
-	int A[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-	int max = A[0];
-	int min = A[0];
-	printf("Массив:");
-	for (int i = 0; i < 10; i++)
-	{
-		printf(" %d", A[i]);
-		if (A[i] > max)
-			max = A[i];
-		if (A[i] < min)
-			min = A[i];
-	}
-	printf("\n");
-	printf("Максимальное число: %d\n", max);
-	printf("Минимальное число: %d\n", min);
-	int razn = max - min;
-	printf("Разница: %d", razn);
+    int i, Arr[N], max, min, raz;
+    setlocale(LC_CTYPE, "Russian");
+
+    for (i = 0; i < N; i++)
+        Arr[i] = random(70);
+
+    for (i = 1, min = Arr[0]; i < N; i++)
+        if (min > Arr[i]) { min = Arr[i]; }
+
+    for (i = 1, max = Arr[0]; i < N; i++)
+        if (max < Arr[i]) { max = Arr[i]; }
+
+    raz = max - min;
+    printf("\n Максимальное %4d\n", max);
+    printf("\n Минимальное %4d\n", min);
+    printf("\n Разность %4d\n", raz);
+    getchar();
+
+    return 0;
 }
