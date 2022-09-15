@@ -1,0 +1,27 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<locale.h>
+#include<math.h>
+#include<time.h>
+#include<malloc.h>
+
+
+int main()
+{
+    int i, n, * mas;
+    setlocale(0, "rus");
+    printf("Введите размер массива: ");
+    scanf("%d", &n);
+    srand(time(0));
+    mas =(int*) malloc(n * sizeof(int));
+    printf("Сгенерированный массив:\n");
+    for (i = 0; i < n; i++) {
+        mas[i] = rand() % 201 - 100; 
+        printf("%d ", mas[i]);
+    }
+    putchar('\n');
+    free(mas);
+    system("pause");
+    return 0;
+}
