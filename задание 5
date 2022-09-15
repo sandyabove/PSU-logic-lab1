@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h>
+#include <Windows.h>
+
+int main(void)
+{
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	struct student {
+		char famil[20], name[20], group[20];
+	}stud[3];
+	char s1[20];
+	char s2[20];
+	char s3[20];
+	int i;
+	for (i = 0; i < 3; i++)
+	{
+		printf("Введите фамилию студента:\n");
+		scanf_s("%s", &stud[i].famil, 20);
+		system("cls");
+		printf("Введите имя студента %s:\n", stud[i].famil);
+		scanf_s("%s", &stud[i].name, 20);
+		system("cls");
+		printf("Введите название группы студента %s %s:\n", stud[i].famil, stud[i].name);
+		scanf_s("%s", &stud[i].group, 20);
+		system("cls");
+	}
+	system("cls");
+	printf("Введите фамилию, имя и группу студента, которого хотите найти:\n");
+	scanf_s("%s", &s1, 20);
+	scanf_s("%s", &s2, 20);
+	scanf_s("%s", &s3, 20);
+	for (i = 0; i < 3; i++) {
+		if (strcmp(s1, stud[i].famil) == 0)
+		{
+			if (strcmp(s2, stud[i].name) == 0)
+			{
+				if (strcmp(s3, stud[i].group) == 0)
+				{
+					printf("%s %s %s", stud[i].famil, stud[i].name, stud[i].group);
+				}
+			}
+		}
+	}
+}
