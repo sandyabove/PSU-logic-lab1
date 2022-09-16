@@ -1,41 +1,41 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include<stdio.h>
-#include<stdlib.h>
-#include<locale.h>
-#include<math.h>
-#include<time.h>
-#include<iostream>
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+#include <Windows.h>
 
-
-int main()
+int main(void)
 {
-    setlocale(LC_ALL, "ru");
-    int i, j;
-    int SummArray[10];
-    int sum;
-    int myArray[8][8]; // объявляем массив размером 8*8 элементов
+	SetConsoleOutputCP(1251); //русификация
+	srand(time(NULL));
+	int a, b;
+	printf("Введите размер двумерного массива:\n");
+	scanf_s("%d", &a);
+	scanf_s("%d", &b);
+	int** A = (int**)malloc((a * sizeof(int*)));
 
-
-    printf("Получившийся массив:\n");
-    for (i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++)
-        {
-            myArray[i][j] = rand() % 100;
-
-            printf("  %d  ", myArray[i][j]);
-        }
-        printf("\n");
-    }
-    printf("Сумма элементов в каждой строке\n");
-
-    for (int i = 0; i < 8; i++) {
-        int sum = 0;
-        for (int j = 0; j < 8; j++) {
-            sum += myArray[i][j];
-            SummArray[i] = sum;
-
-        }
-        printf("%d\n", SummArray[i]);
-    }
-    getchar();
+	for (int j = 0; j < b; j++)// из каждой строки столбик
+	{
+		A[j] = (int*)malloc(b * sizeof(int));
+	}
+	printf("Двумерный массив:\n");
+	for (int i = 0; i < a; i++) {
+		for (int j = 0; j < b; j++) {
+			A[i][j] = rand() % 50-(10);	 //заполнение массива случайными числами
+			printf(" %4d ", A[i][j]);
+		}
+		printf("\n");
+	}
+	int SumArr;
+	printf("Сумма элементов в каждой строке:\n");
+	for (int i = 0; i < a; i++) {
+		int sum = 0;
+		for (int j = 0; j < b; j++) {
+			sum += A[i][j];
+			SumArr = sum;
+		}
+		printf("%d\n", SumArr);
+		SumArr = 0;
+	}
+	free(A);
+	getchar();
 }
